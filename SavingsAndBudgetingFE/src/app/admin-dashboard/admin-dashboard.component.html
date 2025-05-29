@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between">
+  <h2>User List</h2>
+  <button
+    type="button"
+    class="btn btn-lg btn-outline-primary"
+    aria-label="Close"
+    routerLink="/register-user"
+  >
+    Add user
+  </button>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Date Of Birth</th>
+      <th scope="col">Gender</th>
+
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userList; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <p>{{ user.firstName }}</p>
+      </td>
+      <td>
+        <p>{{ user.lastName }}</p>
+      </td>
+
+      <td>
+        <p>{{ user.email }}</p>
+      </td>
+      <td>
+        <p>{{ user.dateOfBirth | date : "dd/MM/yyyy" }}</p>
+      </td>
+      <td>
+        <p>{{ user.gender }}</p>
+      </td>
+      <td>
+        <button
+          class="btn btn-secondary"
+          (click)="viewUserDetails(user.userId)"
+          [routerLink]="'/user-dashboard/' + user.userId"
+        >
+          View
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteUserDetails(user.userId)">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <tr *ngIf="userList.length === 0">
+      <td colspan="8" style="text-align: center">No user found</td>
+    </tr>
+  </tbody>
+</table>

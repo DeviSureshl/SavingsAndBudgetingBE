@@ -1,0 +1,85 @@
+<form [formGroup]="addNewAccountForm" (ngSubmit)="addNewAccount()">
+  <div class="modal-header">
+    <h4 class="modal-title">Add Account</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.close('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="errorMessage" class="text-danger">
+      {{ errorMessage }}
+    </div>
+    <div class="form-group row mb-3">
+      <label for="accountType" class="col-sm-4 col-form-label"
+        >Account Type
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <select
+          class="form-control"
+          formControlName="accountType"
+          id="accountType"
+          [class]="
+            isFormSubmitted && addNewAccountForm.controls['accountType'].invalid
+              ? 'border-danger'
+              : ''
+          "
+        >
+          <option value="">Account Type</option>
+          <option value="CURRENT">CURRENT</option>
+          <option value="CHECKING">CHECKING</option>
+        </select>
+        <div
+          *ngIf="
+            isFormSubmitted && addNewAccountForm.controls['accountType'].invalid
+          "
+          class="text-danger"
+        >
+          Please select an account type!
+        </div>
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="balance" class="col-sm-4 col-form-label"
+        >Balance Amount
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <input
+          id="balance"
+          type="number"
+          class="form-control"
+          [class]="
+            isFormSubmitted && addNewAccountForm.controls['balance'].invalid
+              ? 'border-danger'
+              : ''
+          "
+          placeholder="Balance Amount"
+          formControlName="balance"
+        />
+        <div
+          *ngIf="
+            isFormSubmitted && addNewAccountForm.controls['balance'].invalid
+          "
+          class="text-danger"
+        >
+          Please provide a balance amount!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+  </div>
+</form>

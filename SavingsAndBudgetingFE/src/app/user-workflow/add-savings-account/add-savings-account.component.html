@@ -1,0 +1,149 @@
+<form [formGroup]="addSavingsAccountForm" (ngSubmit)="addSavingsAccount()">
+  <div class="modal-header">
+    <h4 class="modal-title">Create Savings Account</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="activeModal.close('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="errorMessage" class="text-danger mb-3">
+      {{ errorMessage }}
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="goalName" class="col-sm-4 col-form-label"
+        >Goal Name
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <input
+          id="goalName"
+          class="form-control"
+          [class]="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['goalName'].invalid
+              ? 'border-danger'
+              : ''
+          "
+          placeholder="Goal Name"
+          formControlName="goalName"
+        />
+        <div
+          *ngIf="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['goalName'].invalid
+          "
+          class="text-danger"
+        >
+          Please provide a goal name!
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="targetAmount" class="col-sm-4 col-form-label"
+        >Target Amount
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <input
+          id="targetAmount"
+          type="number"
+          class="form-control"
+          [class]="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['targetAmount'].invalid
+              ? 'border-danger'
+              : ''
+          "
+          placeholder="Target Amount"
+          formControlName="targetAmount"
+        />
+        <div
+          *ngIf="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['targetAmount'].invalid
+          "
+          class="text-danger"
+        >
+          Please provide a Target Amount!
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for=" currentAmount" class="col-sm-4 col-form-label"
+        >Current Amount
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <input
+          id="currentAmount"
+          class="form-control"
+          [class]="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['currentAmount'].invalid
+              ? 'border-danger'
+              : ''
+          "
+          placeholder="Current Amount"
+          formControlName="currentAmount"
+        />
+        <div
+          *ngIf="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['currentAmount'].invalid
+          "
+          class="text-danger"
+        >
+          Please provide a Current Amount!
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="targetDate" class="col-sm-4 col-form-label"
+        >Target Date
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-8">
+        <input
+          type="date"
+          id="targetDate"
+          class="form-control"
+          [class]="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['targetDate'].invalid
+              ? 'border-danger'
+              : ''
+          "
+          placeholder="Target Date"
+          formControlName="targetDate"
+        />
+        <div
+          *ngIf="
+            isFormSubmitted &&
+            addSavingsAccountForm.controls['targetDate'].invalid
+          "
+          class="text-danger"
+        >
+          Please provide the target date !
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-outline-primary">Save</button>
+  </div>
+</form>

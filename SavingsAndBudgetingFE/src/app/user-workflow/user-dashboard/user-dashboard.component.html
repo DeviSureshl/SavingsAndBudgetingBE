@@ -1,0 +1,38 @@
+<div *ngIf="hasValidUserDetails" class="row">
+  <h3 class="mb-3">
+    Hi {{ userDetails.firstName }} {{ userDetails.lastName }}
+  </h3>
+  <div class="col-sm-6 mb-3">
+    <app-user-info [userInfo]="userDetails"></app-user-info>
+  </div>
+  <div class="col-sm-6 mb-3">
+    <app-account-summary
+      [userId]="userDetails.userId"
+      [accountList]="accounts"
+      (onAccountCreation)="getAccountsByUserId(); getTransactionsByUserId()"
+    ></app-account-summary>
+  </div>
+  <div class="col-sm-12 mb-3">
+    <app-savings-summary
+      [accounts]="savingsAccount"
+      [userId]="userDetails.userId"
+      (onSavingsAccountCreation)="getSavingsAccountsByUserId()"
+    ></app-savings-summary>
+  </div>
+  <div class="col-sm-12 mb-3">
+    <app-transaction-summary
+      [userId]="userDetails.userId"
+      [transactionList]="transactions"
+      [accountList]="accounts"
+      [savingsAccountList]="savingsAccount"
+      (onTransactionCreation)="
+        getTransactionsByUserId();
+        getAccountsByUserId();
+        getSavingsAccountsByUserId()
+      "
+    ></app-transaction-summary>
+  </div>
+</div>
+<div *ngIf="!hasValidUserDetails">
+  <p class="text-danger">Invalid user!</p>
+</div>

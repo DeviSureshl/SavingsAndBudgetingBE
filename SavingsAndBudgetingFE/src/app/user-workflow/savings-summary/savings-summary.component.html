@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-4">
+      <h5 class="card-title mb-4">Savings Summary</h5>
+      <button
+        type="button"
+        class="btn btn-primary me-3"
+        aria-label="Close"
+        (click)="addSavingsAccount()"
+      >
+        Create Savings Account
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Goal Name</th>
+          <th scope="col">Account Number</th>
+          <th scope="col">Target Amount</th>
+          <th scope="col">Current Amount</th>
+          <th scope="col">Target Date</th>
+          <th scope="col" width="200"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <td>{{ account.goalName }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link"
+              (click)="showSavingsDetails(account)"
+            >
+              {{ account.savingsAccountNumber }}
+            </button>
+          </td>
+          <td>{{ account.targetAmount | currency : "NOK" }}</td>
+          <td>{{ account.currentAmount | currency : "NOK" }}</td>
+          <td>{{ account.targetDate | date : "dd/MM/yyyy" }}</td>
+          <td>
+            <ngb-progressbar
+              class="mb-3"
+              type="success"
+              [value]="(account.currentAmount * 100) / account.targetAmount"
+            />
+          </td>
+        </tr>
+        <tr *ngIf="accounts.length === 0">
+          <td class="text-center" colspan="6">No Savings Accounts found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-4">
+      <h5 class="card-title">Account Summary</h5>
+      <button
+        type="button"
+        class="btn btn-primary me-3"
+        aria-label="Close"
+        (click)="addAccount()"
+      >
+        Create Account
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Account Number</th>
+          <th scope="col">Account Type</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accountList">
+          <td>{{ account.accountNumber }}</td>
+          <td>{{ account.accountType }}</td>
+          <td>{{ account.balance | currency : "NOK" }}</td>
+        </tr>
+        <tr *ngIf="accountList.length === 0">
+          <td class="text-center" colspan="3">No accounts found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

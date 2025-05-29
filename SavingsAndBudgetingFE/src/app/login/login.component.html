@@ -1,0 +1,51 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="formgroup mb-3" *ngIf="authenticationFailed">
+    <small class="form-text text-danger">Authentication Failed</small>
+  </div>
+  <h3 class="mb-3">Login</h3>
+  <div class="form-group mb-3">
+    <label for="exampleInputEmail1">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="Enter email"
+      formControlName="emailId"
+      [class]="
+        isFormSubmitted && loginForm.controls['emailId'].invalid
+          ? 'border-danger'
+          : ''
+      "
+    />
+    <small
+      class="form-text text-danger"
+      *ngIf="isFormSubmitted && loginForm.controls['emailId'].invalid"
+      >Please enter a valid email</small
+    >
+  </div>
+  <div class="form-group mb-3">
+    <label for="exampleInputPassword1">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="Password"
+      formControlName="password"
+      [class]="
+        isFormSubmitted && loginForm.controls['password'].invalid
+          ? 'border-danger'
+          : ''
+      "
+    />
+    <small
+      class="form-text text-danger"
+      *ngIf="isFormSubmitted && loginForm.controls['password'].invalid"
+      >Please enter your password</small
+    >
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-link" routerLink="/register-user">
+    Register now?
+  </button>
+</form>

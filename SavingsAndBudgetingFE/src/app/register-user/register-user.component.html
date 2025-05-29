@@ -1,0 +1,185 @@
+<form [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
+  <div class="form-group row mb-3 text-danger" *ngIf="apiErrorMessage">
+    {{ apiErrorMessage }}
+  </div>
+  <h3 class="mb-3">Register User</h3>
+  <div class="form-group row mb-3">
+    <label for="firstName" class="col-sm-3 col-form-label"
+      >First Name
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-9">
+      <input
+        id="firstName"
+        class="form-control"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['firstName'].invalid
+            ? 'border-danger'
+            : ''
+        "
+        placeholder="First Name"
+        formControlName="firstName"
+      />
+      <div
+        *ngIf="
+          isFormSubmitted && registerUserForm.controls['firstName'].invalid
+        "
+        class="text-danger"
+      >
+        Please provide a first name!
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="lastName" class="col-sm-3 col-form-label"
+      >Last Name
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-9">
+      <input
+        id="lastName"
+        class="form-control"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['lastName'].invalid
+            ? 'border-danger'
+            : ''
+        "
+        placeholder="Last Name"
+        formControlName="lastName"
+      />
+      <div
+        *ngIf="isFormSubmitted && registerUserForm.controls['lastName'].invalid"
+        class="text-danger"
+      >
+        Please provide a last name!
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="password" class="col-sm-3 col-form-label"
+      >Password
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-7">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        id="password"
+        class="form-control"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['password'].invalid
+            ? 'border-danger'
+            : ''
+        "
+        placeholder="Password"
+        formControlName="password"
+      />
+      <div
+        *ngIf="isFormSubmitted && registerUserForm.controls['password'].invalid"
+        class="text-danger"
+      >
+        Please provide a password!
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <button
+        class="btn btn-secondary"
+        type="button"
+        (click)="togglePassword()"
+      >
+        {{ showPassword ? "Hide" : "Show" }}
+      </button>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="dateOfBirth" class="col-sm-3 col-form-label"
+      >Date Of Birth
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-9">
+      <input
+        type="date"
+        id="dateOfBirth"
+        class="form-control"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['dateOfBirth'].invalid
+            ? 'border-danger'
+            : ''
+        "
+        placeholder="dateOfBirth"
+        formControlName="dateOfBirth"
+      />
+      <div
+        *ngIf="
+          isFormSubmitted && registerUserForm.controls['dateOfBirth'].invalid
+        "
+        class="text-danger"
+      >
+        Please provide the date of birth!
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="gender" class="col-sm-3 col-form-label"
+      >Gender
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-9">
+      <select
+        class="form-control"
+        id="gender"
+        formControlName="gender"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['gender'].invalid
+            ? 'border-danger'
+            : ''
+        "
+      >
+        <option value="">Gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Others</option>
+      </select>
+      <div
+        *ngIf="isFormSubmitted && registerUserForm.controls['gender'].invalid"
+        class="text-danger"
+      >
+        Please select a gender!
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <label for="email" class="col-sm-3 col-form-label"
+      >Email
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-sm-9">
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        [class]="
+          isFormSubmitted && registerUserForm.controls['email'].invalid
+            ? 'border-danger'
+            : ''
+        "
+        placeholder="Email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="isFormSubmitted && registerUserForm.controls['email'].invalid"
+        class="text-danger"
+      >
+        Please provide an email id!
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary me-3">Register</button>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

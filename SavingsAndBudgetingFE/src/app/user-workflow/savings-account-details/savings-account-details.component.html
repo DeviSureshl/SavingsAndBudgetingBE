@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h4 class="modal-title">Savings Account Information</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.close('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Goal Name</td>
+        <td>{{ account.goalName }}</td>
+      </tr>
+      <tr>
+        <td>Savings Account Number</td>
+        <td>{{ account.savingsAccountNumber }}</td>
+      </tr>
+      <tr>
+        <td>Target Amount</td>
+        <td>{{ account.targetAmount }}</td>
+      </tr>
+      <tr>
+        <td>Current Amount</td>
+        <td>{{ account.currentAmount }}</td>
+      </tr>
+      <tr>
+        <td>Target Date</td>
+        <td>{{ account.targetDate | date : "dd/MM/yyyy" }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+    <thead>
+      <tr class="table-active">
+        <th scope="col">Sender Account Number</th>
+        <th scope="col">Transaction Date</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of savingsTransactions">
+        <td>{{ transaction.accountNumber }}</td>
+        <td>{{ transaction.transactionDate | date : "dd-MM-yyyy" }}</td>
+        <td>{{ transaction.transactionAmount | currency : "NOK" }}</td>
+      </tr>
+      <tr *ngIf="savingsTransactions.length === 0">
+        <td class="text-center" colspan="3">No transactions found</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    OK
+  </button>
+</div>

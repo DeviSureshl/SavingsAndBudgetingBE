@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-4">
+      <h5 class="card-title mb-4">Transaction Summary</h5>
+      <button
+        type="button"
+        class="btn btn-primary me-3"
+        aria-label="Close"
+        (click)="addTransaction()"
+      >
+        Add Transaction
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr class="table-active">
+          <th scope="col">Account Number</th>
+          <th scope="col">Transaction Type</th>
+          <th scope="col">Transaction Date</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactionList">
+          <td>{{ transaction.accountNumber }}</td>
+          <td>{{ transaction.transactionType }}</td>
+          <td>{{ transaction.transactionDate | date : "dd/MM/yyyy" }}</td>
+          <td>{{ transaction.transactionAmount | currency : "NOK" }}</td>
+        </tr>
+        <tr *ngIf="transactionList.length === 0">
+          <td class="text-center" colspan="4">No transactions found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title mb-4">Profile Information</h5>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>{{ userInfo.firstName }} {{ userInfo.lastName }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{ userInfo.email }}</td>
+        </tr>
+        <tr>
+          <td>Date Of Birth</td>
+          <td>{{ userInfo.dateOfBirth | date : "dd/MM/yyyy" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
